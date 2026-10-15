@@ -1,0 +1,27 @@
+# Runtime dependencies for the current Python environment
+# These versions are compatible with Python 3.14 on Windows.
+
+# ── Core Deep Learning ──────────────────────────────────────────────────────
+torch>=2.9.0
+torchvision>=0.24.0
+torchaudio>=2.9.0
+transformers>=4.45.0
+huggingface_hub>=0.25.0
+
+# ── Backend / API ────────────────────────────────────────────────────────────
+flask>=3.0.3
+flask-cors>=4.0.1
+
+# ── Image Processing ─────────────────────────────────────────────────────────
+Pillow>=10.3.0
+numpy>=1.26.4
+
+# ── NLP / Tokenization ───────────────────────────────────────────────────────
+nltk>=3.8.1
+
+# ── Data / Training Utilities ────────────────────────────────────────────────
+tqdm>=4.66.4
+matplotlib>=3.9.0
+
+# ── Misc ─────────────────────────────────────────────────────────────────────
+requests>=2.32.3
