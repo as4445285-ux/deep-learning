@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Captioning Studio</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="app-wrapper">
+      <header class="header">
+        <div class="container header-inner">
+          <a href="/" class="logo" aria-label="Image Captioning Studio home">
+            <div class="logo-icon">✦</div>
+            <div class="logo-text">CaptionFlow</div>
+          </a>
+          <div class="header-badge">
+            <span class="badge-dot"></span>
+            Demo-ready model
+          </div>
+        </div>
+      </header>
+
+      <main class="container">
+        <section class="hero">
+          <div class="hero-chip">Vision + Language</div>
+          <h1 class="hero-title">Describe any image in a single sentence</h1>
+        </section>
+
+        <section class="main-grid">
+          <div class="card">
+            <div class="card-title">Upload image</div>
+
+            <form id="captionForm" enctype="multipart/form-data">
+              <div id="dropZone" tabindex="0" aria-label="Upload image area">
+                <div class="drop-content">
+                  <div class="drop-icon">📸</div>
+                  <div class="drop-title">Drop image here</div>
+                  <div class="drop-subtitle">PNG, JPG, GIF, BMP, WEBP</div>
+                  <div class="drop-formats">
+                    <span class="fmt-tag">JPG</span>
+                    <span class="fmt-tag">PNG</span>
+                    <span class="fmt-tag">WEBP</span>
+                  </div>
+                </div>
+              </div>
+
+              <input id="imageInput" type="file" accept="image/*" hidden />
+
+              <div id="imagePreview" aria-live="polite">
+                <img id="previewImage" alt="Selected preview" />
+                <div class="preview-overlay">
+                  <button type="button" id="clearImageBtn" class="overlay-btn danger" aria-label="Clear image">✕</button>
+                </div>
+                <div id="imageInfo" class="image-info">Image ready</div>
+              </div>
+
+              <div class="settings-row">
+                <div class="setting-group">
+                  <label class="setting-label" for="temperature">
+                    <span>Temperature</span>
+                    <span id="temperatureValue" class="setting-value">1.0</span>
+                  </label>
+                  <input id="temperature" type="range" min="0.1" max="2.0" step="0.1" value="1.0" />
+                </div>
+
+                <div class="setting-group">
+                  <label class="setting-label" for="maxLen">
+                    <span>Max length</span>
+                    <span class="setting-value"><span id="maxLenValue">25</span> words</span>
+                  </label>
+                  <input id="maxLen" type="range" min="5" max="50" step="1" value="25" />
+                </div>
+              </div>
+
+              <button id="generateBtn" type="submit" class="btn-inner">
+                <span>Generate caption</span>
+              </button>
+            </form>
+          </div>
+
+          <div class="card result-card">
+            <div class="card-title">Result</div>
+
+            <div id="loadingState" class="loading-state" aria-live="polite">
+              <div class="spinner"></div>
+              <div class="loading-text">Generating caption…</div>
+            </div>
+
+            <div id="emptyState" class="empty-state">
+              <div class="empty-icon">✨</div>
+              <div class="empty-title">No caption yet</div>
+              <div class="empty-sub">Upload an image to generate a descriptive caption.</div>
+            </div>
+
+            <div id="captionResult">
+              <div class="demo-banner" id="demoBanner" style="display:none;">Model is running in demo mode because no trained checkpoint is available.</div>
+              <div id="errorBox" class="error-banner" style="display:none;" role="alert"></div>
+              <div class="caption-bubble">
+                <div class="caption-label">Generated caption</div>
+                <div id="captionText" class="caption-text">A beautiful scene with soft lighting and a warm atmosphere.</div>
+              </div>
+
+              <div class="meta-row">
+                <div class="meta-chip">⏱ <span id="elapsedMeta">0 ms</span></div>
+                <div class="meta-chip">📐 <span id="dimsMeta">0×0</span></div>
+                <div class="meta-chip">🕒 <span id="timeMeta">--</span></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="history-section">
+          <div class="section-header">
+            <div class="section-title">Recent captions</div>
+            <button id="clearHistoryBtn" class="clear-btn" type="button">Clear</button>
+          </div>
+          <div id="historyGrid" class="history-grid"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/script.js"></script>
+  </body>
+</html>
